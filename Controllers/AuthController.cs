@@ -30,7 +30,7 @@ namespace Dating.API.Controllers
             {
                 userForRegisterDto.UserName = userForRegisterDto.UserName.ToLower();
             }
-            
+
             if (await _repository.UserExists(userForRegisterDto.UserName))
             {
                 ModelState.AddModelError("Username", "Username is existed!");
@@ -40,8 +40,6 @@ namespace Dating.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-
 
             var userToCreate = new User
             {
@@ -56,8 +54,6 @@ namespace Dating.API.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDto)
         {
-
-            throw new Exception("No");
 
             var userFromRepo = await _repository.Login(userForLoginDto.UserName, userForLoginDto.Password);
 
@@ -81,7 +77,7 @@ namespace Dating.API.Controllers
             var token = tokenHandle.CreateToken(tokenDescriptor);
             var tokenString = tokenHandle.WriteToken(token);
 
-            return Ok(new {tokenString});
+            return Ok(new { tokenString });
         }
     }
 }
