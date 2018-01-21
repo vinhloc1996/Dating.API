@@ -10,6 +10,7 @@ namespace Dating.API.Models
         public DateTime DateAdded { get; set; }
         public bool IsMain { get; set; }
 
+        //Cascade Delete
         public User User { get; set; }
         public int UserId { get; set; }
     }
