@@ -13,6 +13,8 @@ namespace Dating.API.Data
 
         public void Delete<T>(T entity) where T : class => _context.Remove(entity);
 
+        public async Task<Photo> GetPhoto(int id) => await _context.Photo.FirstOrDefaultAsync(p => p.Id == id);
+
         public async Task<User> GetUser(int id) => await _context.User.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
 
         public async Task<IEnumerable<User>> GetUsers() => await _context.User.Include(p => p.Photos).ToListAsync();
